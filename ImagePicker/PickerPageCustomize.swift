@@ -9,13 +9,15 @@
 import SwiftUI
 
 struct PickerPageCustomize: View {
+    @Binding var image : UIImage?
+    @Binding var showPicker : Bool
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        PickerPageView(image: $image, showPicker: $showPicker)
     }
 }
 
 struct PickerPageCustomize_Previews: PreviewProvider {
     static var previews: some View {
-        PickerPageCustomize()
+        PickerPageCustomize(image: .constant(UIImage()), showPicker: .constant(false))
     }
 }

@@ -9,8 +9,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var image : UIImage? = nil
+    @State var showPicker : Bool = false
     var body: some View {
-        Text("Hello, World!")
+        VStack{
+            
+           if self.image != nil {
+                Image(uiImage: image!)
+                .resizable()
+                .frame(width: 300, height: 300)
+                .clipShape(Circle())
+            }else {
+                Image(systemName: "plus.circle.fill")
+                .resizable()
+                .frame(width: 300, height: 300)
+            .clipShape(Circle())
+            }
+            
+            /*Image(uiImage: image ?? UIImage())
+                .resizable()
+                .frame(width: 300, height: 300)
+                .clipShape(Circle())
+ */
+            Button(action: {
+                self.showPicker.toggle()
+            }) {
+                Text("Resim Seç")
+            }.sheet(isPresented: $showPicker) {
+                PickerPageCustomize(image: self.$image, showPicker: self.$showPicker)
+            }
+    }
     }
 }
 
